@@ -1,0 +1,95 @@
+var _videoElement = null;
+var _recordElement = null;
+var _startControlElement = null;
+var _stopControlElement = null;
+var _uploadControlElement = null;
+var _recordInMs = null;
+var _mRecorder = null;
+var chunks = [];
+var _data_uri;
+var _blobData;
+
+//Author:Vijai Anand G
+//This Library is used to capture and save the Webcam Video and audio by using MediaRecorder api
+function VeeVideo(videoElement, recordElement, startControlElement, stopControlElement, uploadControlElement, recordInMs) {
+    _videoElement = videoElement;
+    _recordElement = recordElement;
+    _startControlElement = startControlElement;
+    _stopControlElement = stopControlElement;
+    _uploadControlElement = uploadControlElement;
+    _recordInMs = recordInMs;
+
+    if (_startControlElement != null && _startControlElement != undefined) {
+        _startControlElement.addEventListener("click", startRecording);
+    }
+    if (_stopControlElement != null && _stopControlElement != undefined) {
+        _stopControlElement.addEventListener("click", stopRecording);
+    }
+    if (_uploadControlElement != null && _uploadControlElement != undefined) {
+        _uploadControlElement.addEventListener("click", uploadRecording);
+    }
+    CameraInit();
+}
+
+function CameraInit() {
+    let constraints = {
+        audio: true,
+        video: true
+        //video:{
+        //    facingMode:"user",
+        //    width:{min:640, ideal:1280,max:1920},
+        //    height:{min:480, ideal:720,max:1080}
+        //}
+    }
+
+    navigator.mediaDevices.getUserMedia(constraints)
+        .then(function (mediastreamObj) {
+            _videoElement.srcObject = mediastreamObj;
+
+            _videoElement.onloadedmetadata = function (e) {               
+                _videoElement.play();
+            };
+
+            _mRecorder = new MediaRecorder(mediastreamObj);
+            _mRecorder.ondataavailable = function (e) {
+                chunks.push(e.data);
+            }
+            _mRecorder.onstop = function (e) {
+                let blob = new Blob(chunks, { type: "video/webm" });
+                _blobData = blob;                
+                
+                //chunks=[];                              
+                _recordElement.src = URL.createObjectURL(blob);
+                
+            }
+
+        })
+        .catch(function (ex) {
+            console.log(ex.name, ex.message);
+        });
+}
+
+function startRecording() {
+    _mRecorder.start();
+    $("#btnStart").hide();
+    $("#btnStop").show();
+    $("#btnUpload").hide();
+
+}
+
+function stopRecording() {
+    _mRecorder.stop();
+    $("#btnStart").hide();
+    $("#btnStop").hide();
+    $("#btnUpload").show();
+    $("#recorder").show();
+    $("#preview").hide();
+}
+function uploadRecording() {
+    $("#btnStart").hide();
+    $("#btnStop").hide();
+    $("#btnUpload").hide();
+    $("#recorder").show();
+    $("#btnUpload").show();
+    UploadRecorededVideo();
+}

@@ -1,0 +1,232 @@
+$(function($){
+  "use strict";
+    $(function() {
+      $('.toggle-test').on('click', function() {
+          $('.input-area').toggleClass('is-expanded');
+          $('.output-area').toggleClass('is-expanded');
+
+      });
+    });
+
+    $(function() {
+      $('.toggle').on('click', function() {
+        //debugger;
+        $(this).text(function(i, text){
+            return text === "OPEN" ? "CLOSE" : "OPEN";
+        })
+        $('.widget-right').toggleClass('is-collapsed');
+        $('.test-container').toggleClass('full-screen');
+        $('.bottom-sheet').toggleClass('full-screen');
+
+
+
+      });
+    });
+
+    $(function() {
+      $('.toggle-question').on('click', function() {
+        //debugger;
+        $(this).text(function(i, text){
+            return text === "Collapse" ? "Expand" : "Collapse";
+        })
+        $('.problem-area').toggleClass('is-collapsed');
+        $('.problem-area').toggleClass('no-display');
+        $('.code-area').toggleClass('full-screen');
+        $('.hme-nav-problem').toggleClass('hidden');
+
+      });
+    });
+
+    // Home Page News Ticker Configuration
+    // Instance the tour
+    const myTimer = document.getElementById('countDown');
+  document.body.style.height = window.innerHeight +'px'; // get height
+
+  function startTimer(sec) {
+      //let myMinutes = Math.floor(sec/60),
+      //    remSeconds = sec%60;
+
+      //setInterval(downTime, 1000);
+
+      //function downTime () {
+
+      //    if(sec > 0) {
+      //        sec -= 1;
+      //        myMinutes = Math.floor(sec/60);
+      //        remSeconds = sec%60;
+      //        if(remSeconds < 10){
+      //            myMinutes < 10 ? myTimer.textContent = `0${myMinutes} : 0${remSeconds}` : myTimer.textContent = `${myMinutes} : 0${remSeconds}`;
+      //        } else {
+      //            myMinutes < 10 ? myTimer.textContent = `0${myMinutes} : ${remSeconds}` : myTimer.textContent = `${myMinutes} : ${remSeconds}`;
+      //        }
+
+      //    } else {
+      //        myTimer.textContent = "Finished";
+      //    }
+
+      //}
+
+
+  }
+  startTimer(3600); // seconds in timer
+
+  // Generate Question Numbers
+  function range(start, end) {
+    return Array(end - start + 1).fill().map((_, idx) => start + idx)
+  }
+  var result = range(1, 100);
+  $.each(result, function(index, value){
+      $("#questions").append("<span class='question'>" + value + '</span>');
+  });
+
+  var tour = new Tour({
+    backdrop: true,
+    steps: [
+    {
+      element: "#brand-logo",
+      title: "Assessment Company",
+      content: "HireMee as Online Assessment platform for freshers"
+    },
+    {
+      element: "#ass-date",
+      title: "Assessment Date",
+      content: "Date on which assessment has been taken"
+    },
+    {
+      element: "#user-name",
+      title: "User Name",
+      content: "User name as per details entered by the candidate at the time of Assessment"
+    },
+    {
+      element: "#sub-action-nav-company",
+      title: "Assessment for Company",
+      content: "Conpany Name for which this Assessment is Scheduled"
+    },
+    {
+      element: "#sub-action-end-test",
+      title: "End Test",
+      content: "Any point of time if you wish to end the running test you can click this button"
+    },
+    {
+      element: "#test-timer",
+      title: "Test Timer",
+      content: "This timer will show how much time you have left off to complete the Secction"
+    },
+    {
+      element: "#widget",
+      title: "Navigation widget",
+      content: "This navigation widget will guide through out the Test, you can navigate to the Questions by clicking on question number also this pan will show you the different Color code meaning behind the questions it appears"
+    },
+    {
+      element: "#collapse-widget",
+      title: "Collapse Widget",
+      content: "This toggle button will expand and collapse the Navigation widget to give more space to the Question area, any point of time if you feel its not required you can collapse it."
+    },
+    {
+      element: "#question-plette",
+      title: "Question Plette",
+      content: "This area will show up all the Question available in this particular secction, also these are clickable if you want to jump to the Questions"
+    },
+    {
+      element: "#legend-plette",
+      title: "Legend Plette",
+      content: "This area will guide you through the Color Codes which you are visualize during the Test under the Question Plette"
+    },
+    {
+      element: "#test-questions",
+      title: "Test Questions",
+      content: "All the questions of this Section will here one by one"
+    },
+    {
+      element: "#questions-type",
+      title: "Question Type",
+      content: "Type of Questions in this Section"
+    },
+    {
+      element: "#questions-number",
+      title: "No. of Questions",
+      content: "Total number of Questions to be answered in this Section"
+    },
+    {
+      element: "#question-mark-review",
+      title: "Mark Question",
+      content: "If you want to mark this Question to be answered later after attempting other Questions, you can mark a question to be Reviewed later"
+    },
+    {
+      element: "#test-instructions",
+      title: "Test Instruction",
+      content: "Any time within the Test if you want to look for the Test Instructions you can refer this section, your test will not terminate and you can get the Instructions"
+    },
+    {
+      element: "#next-question",
+      title: "Next Question",
+      content: "Navigate to the Next Question of this Section"
+    },
+    {
+      element: "#previous-question",
+      title: "Previous Question",
+      content: "Navigate to the Previous Question of this Section"
+    },
+    {
+      element: "#section-nav",
+      title: "Test Sections",
+      content: "List of all the Sections which is assigned for this Assessment, any time if you feeel to navigate to other section you do so if it is enabled for this prticular Assessment"
+    },
+    {
+      element: "#problem-n-test",
+      title: "Problem, Test Case & Output",
+      content: "This Section contain Problem Statement, Test Cases and Output of your code, you can navigate different Tabs to check the required response"
+    },
+    {
+      element: "#problem-statement",
+      title: "Problem Statement",
+      content: "Detailed Problem statement for this Question"
+    },
+    {
+      element: "#test-case",
+      title: "Test Case",
+      content: "This tab will show the Test Case Fail/ Pass Status and if fails, the reason and Error Count"
+    },
+    {
+      element: "#output-response",
+      title: "Code Output",
+      content: "This Section will display the response after compilation of the Code you written"
+    },
+    {
+      element: "#code-actions",
+      title: "Primary Actions",
+      content: "These are primary actions which will help you during the coding test and Run and Submit the final Code"
+    },
+    {
+      element: "#expand-code-area",
+      title: "Expand Code Screen",
+      content: "Any time you can expand the code screen to give you more space to code the problem"
+    },
+    {
+      element: "#problem",
+      title: "Problem Statement",
+      content: "Complete problem statement for this Question"
+    },
+    {
+      element: "#code-area-env",
+      title: "Source Code Space",
+      content: "Area where you should write your code, run and Submit the final Code"
+    }
+
+
+  ]});
+
+  // Initialize the tour
+  //tour.init();
+
+  // Start the tour
+  //tour.start();
+
+  // customized horizontal scrollbar
+  $(window).on("load",function(){
+      $(".modal-body").mCustomScrollbar({
+          theme:"dark-3"
+      });
+  });
+
+});

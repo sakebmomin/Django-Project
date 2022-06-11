@@ -1,0 +1,76 @@
+var _typingTestControl=null;
+var _endTestControl=null;
+var _hdnResultControl=null;
+var iLastTime = 0;
+var iTime = 0;
+var iTotal = 0;
+var iKeys = 0;
+var iWords=0;
+var _question=null;
+var _questionId=null;
+
+var _CPM=null;
+var _WPM=null;
+var _Accuracy=null;
+
+//Author:Vijai Anand.G
+//This Script will calculate the WPM,CPM and Accuracy for the TypingTest questions
+//Formula - WPM(Words per Minute) =( totalwords in textbox/(starttime-endtime)) *6000
+//CPM(Keys per minute) = (total keys in textbox/(starttime-endtime)) *6000
+//Accuracy=( goodwords/(goodwords+wrongwords))*100
+function VeeTypingTest(typingTestControl,endTestControl, question, questionId, hiddenResultControl)
+{  
+    this._typingTestControl= typingTestControl;
+    this._endTestControl=endTestControl;
+    this._question=question;
+    this._questionId=questionId;
+    this._hdnResultControl=hiddenResultControl;
+    if(_typingTestControl!=null && _typingTestControl!=undefined)
+    {
+        _typingTestControl.addEventListener("keyup",StartCalculation);
+    }
+    if(_endTestControl!=null && _endTestControl!=undefined)
+    {
+        _endTestControl.addEventListener("click",EndTest);
+    }
+
+    
+}
+
+function StartCalculation()
+{
+    iTime = new Date().getTime();
+
+    if (iLastTime != 0) {
+        iKeys++;
+        iTotal += (iTime - iLastTime)/1000;
+        iWords = _typingTestControl.value.split(/\s/).length;
+        _CPM =Math.round((iKeys / iTotal) * 60, 2);
+        _WPM=Math.round((iWords / iTotal) * 60, 2);
+    }
+
+    iLastTime = iTime;
+}
+
+function EndTest() {
+    var goodWords = 0;
+    var wrongWords = 0;
+    
+    var typedWords=_typingTestControl.value.split(/\s/);
+    var actualWords=_question.split(/\s/);
+    for(var i=0;i<iWords;i++){
+        if(iWords>1 && actualWords.length>1)
+        {
+            if(typedWords[i]== actualWords[i])
+            {
+                goodWords++;
+            }
+            else{
+                wrongWords++;
+            }
+        }
+    }
+    _Accuracy=((goodWords / (goodWords+wrongWords)) * 100).toFixed(2) ;
+    //_hdnResultControl.value =' WPM:' + _WPM + '~CPM:' +_CPM +'~Accuracy:' +_Accuracy +"~QuestionId:" + _questionId +"~User_Answer:" + _typingTestControl.value ; 
+    _hdnResultControl.value = ' WPM:' + _WPM + '~CPM:' + _CPM + '~Accuracy:' + _Accuracy + "~QuestionId:" + _questionId + "~User_Answer:" + _typingTestControl.value + "~Wrong_Words:" + wrongWords ; 
+}

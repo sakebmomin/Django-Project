@@ -1,0 +1,32 @@
+﻿var TimerHandle;
+var _seconds;
+var _element;
+
+function CountDownTimer(hours, minutes, seconds, element) {
+    _seconds = (Number(hours) * 3600) + (Number(minutes) * 60) + Number(seconds);
+    _element = element;
+    TimerHandle=setInterval(TimeIt, 1000);
+}
+
+function TimeIt() {
+    var days = Math.floor(_seconds / 24 / 60 / 60);
+    var hoursLeft = Math.floor((_seconds) - (days * 86400));
+    var hours = Math.floor(hoursLeft / 3600);
+    var minutesLeft = Math.floor((hoursLeft) - (hours * 3600));
+    var minutes = Math.floor(minutesLeft / 60);
+    var remainingSeconds = _seconds % 60;
+
+    function pad(n) {
+        return (n < 10 ? "0" + n : n);
+    }
+
+    $(_element).html(pad(hours) + ":" + pad(minutes) + ":" + pad(remainingSeconds)).trigger("TimerChange");
+
+    if (Number(_seconds) == 0) {
+        clearInterval(TimerHandle);
+    }
+    else {
+        _seconds--;
+    }
+
+}

@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://proassess.hiremee.co.in/Assessment/LoadAssessment -->
+<html style="" class="js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HireMee Assessment</title>
+    <link rel="icon" type="image/png" href="https://proassess.hiremee.co.in/Images/Pro/fav-icon.png">
+    
+
+    <script src="./HireMee Assessment_files/jquery-3.2.1.min.js.download"></script>
+    <link href="./HireMee Assessment_files/font-awesome.css" rel="stylesheet">
+    <link href="./HireMee Assessment_files/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./HireMee Assessment_files/CalcSS3.css">
+    <script src="./HireMee Assessment_files/CommonAlert.js.download"></script>
+
+    <script src="./HireMee Assessment_files/scripts"></script>
+
+    <link href="./HireMee Assessment_files/styles" rel="stylesheet">
+
+    <script src="./HireMee Assessment_files/ProHelper.js.download"></script>
+
+
+                <style>
+                    body {
+                        width: auto;
+                        height: auto;
+                    }
+                </style>
+                <style>
+                    body
+                    {
+                    background-image: url('https://s3.ap-south-1.amazonaws.com/live.hiremee.companylogos/CorporateSettings/assessment_banner__1623156423.png');
+                    background-repeat: repeat;
+                    background-color: #cccccc;
+                        width: auto;
+                height: auto;
+                    background-size: cover;
+                }
+                </style>
+
+
+    <script type="text/javascript">
+        var proctoringClosed = false;
+        var m_RedirectURL = '';
+        $(document).ready(function () {
+            //PreventBack();
+
+            window.history.pushState(null, "", window.location.href);
+            window.onpopstate = function () {
+                window.history.pushState(null, "", window.location.href);
+            };
+            InitializeCamera();
+
+        });
+
+        $(document).on("keydown", DisableF5);
+
+        function DisableF5(e) {
+            if ((e.which || e.keyCode) == 116) e.preventDefault();
+        };
+
+        $(document).bind("contextmenu", function (e) {
+            return false;
+        });
+
+        window.addEventListener("keydown", function (e) {
+            // space and arrow keys
+            if ([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+                e.preventDefault();
+            }
+        }, false);
+
+        $(document).bind("contextmenu", function (e) {
+            return false;
+        });
+
+        document.onkeydown = function (e) {
+            if (e.ctrlKey &&
+                (e.keyCode === 85)) {
+                return false;
+            } else {
+                return true;
+            }
+        };
+
+        $(document).keypress("u", function (e) {
+            if (e.ctrlKey) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        });
+
+
+        //document.onkeypress = function (event) {
+        //    event = (event || window.event);
+        //    if (event.keyCode == 123) {
+        //        return false;
+        //    }
+        //}
+        //document.onmousedown = function (event) {
+        //    event = (event || window.event);
+        //    if (event.keyCode == 123) {
+        //        return false;
+        //    }
+        //}
+        //document.onkeydown = function (event) {
+        //    event = (event || window.event);
+        //    if (event.keyCode == 123) {
+        //        return false;
+        //    }
+        //}
+
+        function PreventBack() { window.history.forward(); }
+
+        function InitializeCamera() {
+            Webcam.set({
+                width: 320,
+                height: 240,
+                image_format: 'jpeg',
+                jpeg_quality: 100
+            });
+        }
+        //-----------Page refresh and reload------------
+        const pageAccessedByReload = (
+            (window.performance.navigation && window.performance.navigation.type === 1) ||
+            window.performance
+                .getEntriesByType('navigation')
+                .map((nav) => nav.type)
+                .includes('reload')
+        );
+        if (pageAccessedByReload == true) {
+            redirectHomescreen();
+        }
+
+        //----------Check Internet whether on or off---------
+        window.addEventListener('offline', updateOnlineStatus);
+        window.addEventListener('online', updateOnlineStatus);
+        function updateOnlineStatus(event) {
+            try {
+                var condition = navigator.onLine ? "online" : "offline";
+
+                if (condition == "offline") {
+                    $("#divloading").hide();
+                    swal.fire({
+                        title: '<span></span>',
+                        text: "No internet,Please check your internet connection.",
+                        type: "error",
+                        imageUrl: '/Images/Pro/error.svg',
+                        imageWidth: 80,
+                        imageHeight: 80,
+                        showCancelButton: false,
+                        confirmButtonText: 'Refresh',
+                        confirmButtonColor: '#ed5364',
+                        allowOutsideClick: false
+                    }).then((result) => {
+                        if (result.value) {
+                            redirectHomescreen();
+                        }
+                    })
+                }
+
+            } catch (e) {
+                $("#divloading").hide();
+            }
+        }
+        function redirectHomescreen() {
+            try {
+                var url = window.localStorage.getItem("pageUrl");
+                var isWindowOpen = window.localStorage.getItem("IsModel");
+                if (url != null && url != "" && url != undefined) {
+                    if (isWindowOpen == "true") {
+                        window.close();
+                    }
+                    window.location.href = url;
+                }
+                else {
+                    window.location.href = "/TestPin/StartExam";
+                }
+            } catch (e) {
+
+            }
+        }
+
+    </script>
+<style>
+    .CodeMirror {
+        border-top: 1px solid #888;
+        /*border-bottom: 1px solid #888;
+        border-right: 1px solid #888;*/
+    }
+
+    .errorClass {
+        border-color: #ffdad2 !important;
+        background-color: #ffdad2 !important;
+    }
+
+    .warning {
+        background-color: #F36747;
+        color: white;
+    }
+
+    .current {
+        background-color: #154e80;
+        color: white;
+    }
+
+    .success {
+        color: #0b6624;
+    }
+
+    .spanAnswer {
+        height: auto;
+        margin: 5px;
+        /*background-color: gray;*/
+        padding: 10px;
+        cursor: move;
+        border-radius: 3px;
+        float: left;
+        /*width: 20%;*/
+        /*color: white;*/
+    }
+
+    .dropedAnswer {
+        margin: 5px;
+        background-color: lightgray;
+        padding: 10px 0px 10px 10px;
+        cursor: text;
+        border-radius: 5px;
+        float: left;
+    }
+
+    .spanClose {
+        color: white;
+        background-color: red;
+        padding: 2px;
+        margin: 5px;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+
+    .spanUsedAnswer {
+        background-color: lightgray !important;
+        cursor: no-drop !important;
+        color: black !important;
+        height: auto;
+        margin: 5px;
+        padding: 10px;
+        border-radius: 3px;
+        float: left;
+        /*width: 15%;*/
+    }
+
+    .Qstyle {
+        height: 233px;
+    }
+
+    .answerLabel {
+        padding-left: 10px;
+    }
+
+    #AdjSubQuestion2 p {
+        height: 20%;
+    }
+
+    #AdjSubQuestion1 p {
+        height: 20%;
+    }
+
+    .condingContent {
+        padding: 8px 0px 16px 16px !important;
+        overflow-x: hidden !important;
+        /*overflow-y: hidden !important;*/
+    }
+
+    .lnr-chevron-down {
+        content: "\e874";
+    }
+
+    .instruction {
+        padding: 16px;
+        font-size: 1.125em !important;
+    }
+
+    .subjectivefile {
+        width: auto !important;
+        height: auto !important;
+        margin-left: 0px !important;
+        border: none !important;
+        padding: 0px !important;
+    }
+</style><style>
+
+    /* The Modal (background) */
+    .adjmodal {
+        display: none;
+        position: absolute; /* Stay in place */
+        /*z-index: 1;*/ /* Sit on top */
+        bottom: 0;
+        left: 0;
+        top: 75%;
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+    }
+
+    /* Modal Content */
+    .adjmodal-content {
+        background-color: #595959;
+        margin: auto;
+        padding: 5px;
+        border: 1px solid #595959;
+        border-radius: 5px;
+        width: 50%;
+        border-radius: 5px;
+        float: left;
+        margin-left: 2%;
+        font-size: 13px;
+    }
+    /* Modal Content */
+    .modal-Innercontent {
+        padding: 10px;
+        color: white;
+    }
+
+    /* The Close Button */
+    .adjectiveClose {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+    }
+
+        .adjectiveClose:hover,
+        .adjectiveClose:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .arrow {
+        background: none !important;
+    }
+
+    .bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+        top: 10px !important;
+        border-width: 0.4rem 0.4rem 0;
+        border-top-color: #000;
+        left: 2px !important;
+        transform: rotate(-90deg);
+    }
+</style><style>
+
+    #calculator {
+        width: 440px;
+        padding: 25px;
+        margin: auto;
+        /*border: 5px solid #aaa;*/
+        border-radius: 15px 15px;
+    }
+
+
+    .calbtn {
+        background: #888;
+        color: black;
+        font-size: 15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 19px;
+        padding-right: 19px;
+        margin: 6px;
+        cursor: pointer;
+        text-align: center;
+        border: white 2px solid;
+    }
+
+
+        .calbtn:hover {
+            background-color: #FFFFFF
+        }
+
+
+    #shiftBtn {
+        background-color: gray
+    }
+
+    .EndtestTable {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        word-break: break-word;
+    }
+
+
+    #the-canvas {
+        border: 1px solid black;
+        direction: ltr;
+    }
+
+    #pdf-viewer {
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.1);
+        overflow: auto;
+    }
+
+    .pdf-page-canvas {
+        display: block;
+        margin: 5px auto;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        width: 100%;
+        height: 100%;
+    }
+
+    .fade:not(.show) {
+        opacity: 1 !important;
+    }
+
+    .sub-action {
+        height: unset !important;
+    }
+
+    .widget-right1 {
+        top: 96px !important;
+    }
+</style><title>HireMee Assessment </title><script src="./HireMee Assessment_files/jquery-3.2.1.min.js(1).download" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><link href="./HireMee Assessment_files/icon" rel="stylesheet"><link href="./HireMee Assessment_files/mcustomscrollbar.css" rel="stylesheet"><link href="./HireMee Assessment_files/main.css" rel="stylesheet"><link href="./HireMee Assessment_files/summernote.css" rel="stylesheet"><link href="./HireMee Assessment_files/codemirror.css" rel="stylesheet"><link href="./HireMee Assessment_files/show-hint.css" rel="stylesheet"><style>.swal2-popup.swal2-toast{flex-direction:row;align-items:center;width:auto;padding:.625em;overflow-y:hidden;background:#fff;box-shadow:0 0 .625em #d9d9d9}.swal2-popup.swal2-toast .swal2-header{flex-direction:row;padding:0}.swal2-popup.swal2-toast .swal2-title{flex-grow:1;justify-content:flex-start;margin:0 .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{position:static;width:.8em;height:.8em;line-height:.8}.swal2-popup.swal2-toast .swal2-content{justify-content:flex-start;padding:0;font-size:1em}.swal2-popup.swal2-toast .swal2-icon{width:2em;min-width:2em;height:2em;margin:0}.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:1.8em;font-weight:700}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{font-size:.25em}}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{flex-basis:auto!important;width:auto;height:auto;margin:0 .3125em}.swal2-popup.swal2-toast .swal2-styled{margin:0 .3125em;padding:.3125em .625em;font-size:1em}.swal2-popup.swal2-toast .swal2-styled:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(50,100,150,.4)}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;transform:rotate(45deg);border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.8em;left:-.5em;transform:rotate(-45deg);transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.25em;left:.9375em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{-webkit-animation:swal2-toast-animate-success-line-tip .75s;animation:swal2-toast-animate-success-line-tip .75s}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{-webkit-animation:swal2-toast-animate-success-line-long .75s;animation:swal2-toast-animate-success-line-long .75s}.swal2-popup.swal2-toast.swal2-show{-webkit-animation:swal2-toast-show .5s;animation:swal2-toast-show .5s}.swal2-popup.swal2-toast.swal2-hide{-webkit-animation:swal2-toast-hide .1s forwards;animation:swal2-toast-hide .1s forwards}.swal2-container{display:flex;position:fixed;z-index:1060;top:0;right:0;bottom:0;left:0;flex-direction:row;align-items:center;justify-content:center;padding:.625em;overflow-x:hidden;transition:background-color .1s;-webkit-overflow-scrolling:touch}.swal2-container.swal2-backdrop-show,.swal2-container.swal2-noanimation{background:rgba(0,0,0,.4)}.swal2-container.swal2-backdrop-hide{background:0 0!important}.swal2-container.swal2-top{align-items:flex-start}.swal2-container.swal2-top-left,.swal2-container.swal2-top-start{align-items:flex-start;justify-content:flex-start}.swal2-container.swal2-top-end,.swal2-container.swal2-top-right{align-items:flex-start;justify-content:flex-end}.swal2-container.swal2-center{align-items:center}.swal2-container.swal2-center-left,.swal2-container.swal2-center-start{align-items:center;justify-content:flex-start}.swal2-container.swal2-center-end,.swal2-container.swal2-center-right{align-items:center;justify-content:flex-end}.swal2-container.swal2-bottom{align-items:flex-end}.swal2-container.swal2-bottom-left,.swal2-container.swal2-bottom-start{align-items:flex-end;justify-content:flex-start}.swal2-container.swal2-bottom-end,.swal2-container.swal2-bottom-right{align-items:flex-end;justify-content:flex-end}.swal2-container.swal2-bottom-end>:first-child,.swal2-container.swal2-bottom-left>:first-child,.swal2-container.swal2-bottom-right>:first-child,.swal2-container.swal2-bottom-start>:first-child,.swal2-container.swal2-bottom>:first-child{margin-top:auto}.swal2-container.swal2-grow-fullscreen>.swal2-modal{display:flex!important;flex:1;align-self:stretch;justify-content:center}.swal2-container.swal2-grow-row>.swal2-modal{display:flex!important;flex:1;align-content:center;justify-content:center}.swal2-container.swal2-grow-column{flex:1;flex-direction:column}.swal2-container.swal2-grow-column.swal2-bottom,.swal2-container.swal2-grow-column.swal2-center,.swal2-container.swal2-grow-column.swal2-top{align-items:center}.swal2-container.swal2-grow-column.swal2-bottom-left,.swal2-container.swal2-grow-column.swal2-bottom-start,.swal2-container.swal2-grow-column.swal2-center-left,.swal2-container.swal2-grow-column.swal2-center-start,.swal2-container.swal2-grow-column.swal2-top-left,.swal2-container.swal2-grow-column.swal2-top-start{align-items:flex-start}.swal2-container.swal2-grow-column.swal2-bottom-end,.swal2-container.swal2-grow-column.swal2-bottom-right,.swal2-container.swal2-grow-column.swal2-center-end,.swal2-container.swal2-grow-column.swal2-center-right,.swal2-container.swal2-grow-column.swal2-top-end,.swal2-container.swal2-grow-column.swal2-top-right{align-items:flex-end}.swal2-container.swal2-grow-column>.swal2-modal{display:flex!important;flex:1;align-content:center;justify-content:center}.swal2-container.swal2-no-transition{transition:none!important}.swal2-container:not(.swal2-top):not(.swal2-top-start):not(.swal2-top-end):not(.swal2-top-left):not(.swal2-top-right):not(.swal2-center-start):not(.swal2-center-end):not(.swal2-center-left):not(.swal2-center-right):not(.swal2-bottom):not(.swal2-bottom-start):not(.swal2-bottom-end):not(.swal2-bottom-left):not(.swal2-bottom-right):not(.swal2-grow-fullscreen)>.swal2-modal{margin:auto}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-container .swal2-modal{margin:0!important}}.swal2-popup{display:none;position:relative;box-sizing:border-box;flex-direction:column;justify-content:center;background:#fff;}.swal2-popup:focus{outline:0}.swal2-popup.swal2-loading{overflow-y:hidden}.swal2-header{display:flex;flex-direction:column;align-items:center;padding:0 1.8em}.swal2-title{position:relative;max-width:100%;margin:0 0 .4em;padding:0;color:#595959;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}.swal2-actions{display:flex;z-index:1;flex-wrap:wrap;align-items:center;justify-content:center;width:100%;margin:1.25em auto 0}.swal2-actions:not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}.swal2-actions:not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1))}.swal2-actions:not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2))}.swal2-actions.swal2-loading .swal2-styled.swal2-confirm{box-sizing:border-box;width:2.5em;height:2.5em;margin:.46875em;padding:0;-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border:.25em solid transparent;border-radius:100%;border-color:transparent;background-color:transparent!important;color:transparent!important;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.swal2-actions.swal2-loading .swal2-styled.swal2-cancel{margin-right:30px;margin-left:30px}.swal2-actions.swal2-loading :not(.swal2-styled).swal2-confirm::after{content:"";display:inline-block;width:15px;height:15px;margin-left:5px;-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border:3px solid #999;border-radius:50%;border-right-color:transparent;box-shadow:1px 1px 1px #fff}.swal2-styled{margin:.3125em;padding:.625em 2em;box-shadow:none;font-weight:500}.swal2-styled:not([disabled]){cursor:pointer}.swal2-styled.swal2-confirm{border:0;background:initial;background-color:#024059;color:#fff;font-size:1.0625em}.swal2-styled.swal2-cancel{border:0;background:initial;background-color:#aaa;color:#fff;font-size:1.0625em}.swal2-styled:focus{outline:0;box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(50,100,150,.4)}.swal2-styled::-moz-focus-inner{border:0}.swal2-footer{justify-content:center;margin:1.25em 0 0;padding:1em 0 0;border-top:1px solid #eee;color:#545454;font-size:1em}.swal2-timer-progress-bar-container{position:absolute;right:0;bottom:0;left:0;height:.25em;overflow:hidden;border-bottom-right-radius:.3125em;border-bottom-left-radius:.3125em}.swal2-timer-progress-bar{width:100%;height:.25em;background:rgba(0,0,0,.2)}.swal2-image{max-width:100%;margin:1.25em auto}.swal2-close{position:absolute;z-index:2;top:0;right:0;align-items:center;justify-content:center;width:1.2em;height:1.2em;padding:0;overflow:hidden;transition:color .1s ease-out;border:none;border-radius:0;background:0 0;color:#ccc;font-family:serif;font-size:2.5em;line-height:1.2;cursor:pointer}.swal2-close:hover{transform:none;background:0 0;color:#f27474}.swal2-close::-moz-focus-inner{border:0}.swal2-content{z-index:1;justify-content:center;margin:0;padding:0 1.6em;color:#545454;font-size:1.125em;font-weight:400;line-height:normal;text-align:center;word-wrap:break-word}.swal2-checkbox,.swal2-file,.swal2-input,.swal2-radio,.swal2-select,.swal2-textarea{margin:1em auto}.swal2-file,.swal2-input,.swal2-textarea{box-sizing:border-box;width:100%;transition:border-color .3s,box-shadow .3s;border:1px solid #d9d9d9;border-radius:.1875em;background:inherit;box-shadow:inset 0 1px 1px rgba(0,0,0,.06);color:inherit;font-size:1.125em}.swal2-file.swal2-inputerror,.swal2-input.swal2-inputerror,.swal2-textarea.swal2-inputerror{border-color:#f27474!important;box-shadow:0 0 2px #f27474!important}.swal2-file:focus,.swal2-input:focus,.swal2-textarea:focus{border:1px solid #b4dbed;outline:0;box-shadow:0 0 3px #c4e6f5}.swal2-file::-moz-placeholder,.swal2-input::-moz-placeholder,.swal2-textarea::-moz-placeholder{color:#ccc}.swal2-file:-ms-input-placeholder,.swal2-input:-ms-input-placeholder,.swal2-textarea:-ms-input-placeholder{color:#ccc}.swal2-file::-ms-input-placeholder,.swal2-input::-ms-input-placeholder,.swal2-textarea::-ms-input-placeholder{color:#ccc}.swal2-file::placeholder,.swal2-input::placeholder,.swal2-textarea::placeholder{color:#ccc}.swal2-range{margin:1em auto;background:#fff}.swal2-range input{width:80%}.swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}.swal2-range input,.swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}.swal2-input{height:2.625em;padding:0 .75em}.swal2-input[type=number]{max-width:10em}.swal2-file{background:inherit;font-size:1.125em}.swal2-textarea{height:6.75em;padding:.75em}.swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:inherit;color:inherit;font-size:1.125em}.swal2-checkbox,.swal2-radio{align-items:center;justify-content:center;background:#fff;color:inherit}.swal2-checkbox label,.swal2-radio label{margin:0 .6em;font-size:1.125em}.swal2-checkbox input,.swal2-radio input{margin:0 .4em}.swal2-validation-message{display:none;align-items:center;justify-content:center;padding:.625em;overflow:hidden;background:#f0f0f0;color:#666;font-size:1em;font-weight:300}.swal2-validation-message::before{content:"!";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}.swal2-icon{position:relative;box-sizing:content-box;justify-content:center;width:5em;height:5em;margin:1.25em auto 1.875em;border:.25em solid transparent;border-radius:50%;font-family:inherit;line-height:5em;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:3.75em}.swal2-icon.swal2-error{border-color:#f27474;color:#f27474}.swal2-icon.swal2-error .swal2-x-mark{position:relative;flex-grow:1}.swal2-icon.swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;transform:rotate(45deg)}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;transform:rotate(-45deg)}.swal2-icon.swal2-error.swal2-icon-show{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-icon.swal2-error.swal2-icon-show .swal2-x-mark{-webkit-animation:swal2-animate-error-x-mark .5s;animation:swal2-animate-error-x-mark .5s}.swal2-icon.swal2-warning{border-color:#facea8;color:#f8bb86}.swal2-icon.swal2-info{border-color:#9de0f6;color:#3fc3ee}.swal2-icon.swal2-question{border-color:#c9dae1;color:#87adbd}.swal2-icon.swal2-success{border-color:#a5dc86;color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;transform:rotate(45deg);border-radius:50%}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.4375em;left:-2.0635em;transform:rotate(-45deg);transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.6875em;left:1.875em;transform:rotate(-45deg);transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}.swal2-icon.swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-.25em;left:-.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}.swal2-icon.swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;transform:rotate(-45deg)}.swal2-icon.swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.8125em;width:1.5625em;transform:rotate(45deg)}.swal2-icon.swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;transform:rotate(-45deg)}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-tip{-webkit-animation:swal2-animate-success-line-tip .75s;animation:swal2-animate-success-line-tip .75s}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-long{-webkit-animation:swal2-animate-success-line-long .75s;animation:swal2-animate-success-line-long .75s}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-circular-line-right{-webkit-animation:swal2-rotate-success-circular-line 4.25s ease-in;animation:swal2-rotate-success-circular-line 4.25s ease-in}.swal2-progress-steps{align-items:center;margin:0 0 1.25em;padding:0;background:inherit;font-weight:600}.swal2-progress-steps li{display:inline-block;position:relative}.swal2-progress-steps .swal2-progress-step{z-index:20;width:2em;height:2em;border-radius:2em;background:#3085d6;color:#fff;line-height:2em;text-align:center}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#3085d6}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}.swal2-progress-steps .swal2-progress-step-line{z-index:10;width:2.5em;height:.4em;margin:0 -1px;background:#3085d6}[class^=swal2]{-webkit-tap-highlight-color:transparent}.swal2-show{-webkit-animation:swal2-show .3s;animation:swal2-show .3s}.swal2-hide{-webkit-animation:swal2-hide .15s forwards;animation:swal2-hide .15s forwards}.swal2-noanimation{transition:none}.swal2-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.swal2-rtl .swal2-close{right:auto;left:0}.swal2-rtl .swal2-timer-progress-bar{right:0;left:auto}@supports (-ms-accelerator:true){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@-moz-document url-prefix(){.swal2-close:focus{outline:2px solid rgba(50,100,150,.4)}}@-webkit-keyframes swal2-toast-show{0%{transform:translateY(-.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0)}}@keyframes swal2-toast-show{0%{transform:translateY(-.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0)}}@-webkit-keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@-webkit-keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@-webkit-keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@-webkit-keyframes swal2-show{0%{transform:scale(.7)}45%{transform:scale(1.05)}80%{transform:scale(.95)}100%{transform:scale(1)}}@keyframes swal2-show{0%{transform:scale(.7)}45%{transform:scale(1.05)}80%{transform:scale(.95)}100%{transform:scale(1)}}@-webkit-keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(.5);opacity:0}}@keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(.5);opacity:0}}@-webkit-keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@-webkit-keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@-webkit-keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@-webkit-keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(.4);opacity:0}50%{margin-top:1.625em;transform:scale(.4);opacity:0}80%{margin-top:-.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(.4);opacity:0}50%{margin-top:1.625em;transform:scale(.4);opacity:0}80%{margin-top:-.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@-webkit-keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0);opacity:1}}@keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0);opacity:1}}@-webkit-keyframes swal2-rotate-loading{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}@keyframes swal2-rotate-loading{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto!important}body.swal2-no-backdrop .swal2-container{top:auto;right:auto;bottom:auto;left:auto;max-width:calc(100% - .625em * 2);background-color:transparent!important}body.swal2-no-backdrop .swal2-container>.swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}body.swal2-no-backdrop .swal2-container.swal2-top{top:0;left:50%;transform:translateX(-50%)}body.swal2-no-backdrop .swal2-container.swal2-top-left,body.swal2-no-backdrop .swal2-container.swal2-top-start{top:0;left:0}body.swal2-no-backdrop .swal2-container.swal2-top-end,body.swal2-no-backdrop .swal2-container.swal2-top-right{top:0;right:0}body.swal2-no-backdrop .swal2-container.swal2-center{top:50%;left:50%;transform:translate(-50%,-50%)}body.swal2-no-backdrop .swal2-container.swal2-center-left,body.swal2-no-backdrop .swal2-container.swal2-center-start{top:50%;left:0;transform:translateY(-50%)}body.swal2-no-backdrop .swal2-container.swal2-center-end,body.swal2-no-backdrop .swal2-container.swal2-center-right{top:50%;right:0;transform:translateY(-50%)}body.swal2-no-backdrop .swal2-container.swal2-bottom{bottom:0;left:50%;transform:translateX(-50%)}body.swal2-no-backdrop .swal2-container.swal2-bottom-left,body.swal2-no-backdrop .swal2-container.swal2-bottom-start{bottom:0;left:0}body.swal2-no-backdrop .swal2-container.swal2-bottom-end,body.swal2-no-backdrop .swal2-container.swal2-bottom-right{right:0;bottom:0}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll!important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:static!important}}body.swal2-toast-shown .swal2-container{background-color:transparent}body.swal2-toast-shown .swal2-container.swal2-top{top:0;right:auto;bottom:auto;left:50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{top:0;right:0;bottom:auto;left:auto}body.swal2-toast-shown .swal2-container.swal2-top-left,body.swal2-toast-shown .swal2-container.swal2-top-start{top:0;right:auto;bottom:auto;left:0}body.swal2-toast-shown .swal2-container.swal2-center-left,body.swal2-toast-shown .swal2-container.swal2-center-start{top:50%;right:auto;bottom:auto;left:0;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{top:50%;right:auto;bottom:auto;left:50%;transform:translate(-50%,-50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{top:50%;right:0;bottom:auto;left:auto;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-left,body.swal2-toast-shown .swal2-container.swal2-bottom-start{top:auto;right:auto;bottom:0;left:0}body.swal2-toast-shown .swal2-container.swal2-bottom{top:auto;right:auto;bottom:0;left:50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{top:auto;right:0;bottom:0;left:auto}body.swal2-toast-column .swal2-toast{flex-direction:column;align-items:stretch}body.swal2-toast-column .swal2-toast .swal2-actions{flex:1;align-self:stretch;height:2.2em;margin-top:.3125em}body.swal2-toast-column .swal2-toast .swal2-loading{justify-content:center}body.swal2-toast-column .swal2-toast .swal2-input{height:2em;margin:.3125em auto;font-size:1em}body.swal2-toast-column .swal2-toast .swal2-validation-message{font-size:1em}</style></head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <!-- Dynamic meta tags -->
+    
+    
+    
+    
+    
+    
+    
+
+<body class="no-skin" style="height: 614px;">
+
+    
+
+<div class="" id="divloading" style="display: none;">
+    <div id="overlay"> </div>
+    <div class="app-loader loading">
+        <img src="./HireMee Assessment_files/loader.gif" alt="Loader">
+        <span class="label">Please wait...</span>
+    </div>
+</div>
+
+<div class="" id="divSubloading" style="display:none;">
+    <div id="Suboverlay"> </div>
+    <div class="app-loader loading">
+        <img src="./HireMee Assessment_files/loader.gif" alt="Loader">
+        <div>
+            <span class="SubLoadinglabel">Waiting For Internet Connection...</span>
+        </div>
+    </div>
+   
+</div>
+
+    <div class="video-hide" style="display:none;">
+        <div id="backgroundcamContainer" style="width: 320px; height: 240px;"><div></div><video autoplay="autoplay" style="width: 320px; height: 240px;"></video></div>
+        <input id="pauseBtnhms" name="pauseBtnhms" type="button" value="Start">
+        <input id="StopBtnhms" name="pauseBtnhms" type="button" value="Stop">
+    </div>
+
+
+    <div class="main-wrapper" style="padding: 0px 0px 0px 0px;">
+        <!-- Navigation Components start -->
+        <nav class="navbar navbar-dark d-flex justify-content-between sticky-top nav-height-unset">
+            <a class="navbar-brand m-auto m-sm-0" javascript:void(0);="" id="brand-logo">
+                
+                    <img id="imgLogo" alt="Custom Logo" height="50" class="d-inline-block align-top" src="./HireMee Assessment_files/Thinkitive-AptitudeandCodingTest_assessment_logo_1623066193.jpg">
+            </a>
+            <div class="d-flex justify-content-end">
+                <div class="nav-badgage mb-2 mb-sm-0" id="ass-date">
+                    <span class="lnr lnr-calendar-full"></span> <span class="data" id="sDate">08-June-2022</span>
+                </div>
+                <div class="nav-badgage mb-2 mb-sm-0" id="user-name">
+                    <span class="lnr lnr-user"></span> <span class="data" id="sName">Sakeb Momin</span>
+                </div>
+            </div>
+        </nav>
+        <!-- Navigation Component ends -->
+        <!-- Assessment agency info and main action -->
+        <div class="sub-action">
+            <div class="d-flex justify-content-between ">
+                <div class="sub-action-label col pl-0 d-flex align-items-center"><span id="sassessmentName">Thinkitive - Aptitude and Coding Test</span></div>
+                <div class="sub-action col d-flex justify-content-end align-items-center">
+                    <div class="timer" id="countdowntimer">
+                        Remaining Time :
+                        <span id="future_date">00:20:39</span>
+                    </div>
+                    <button class="btn btn-sm btn-danger text-uppercase end-btn-sz" id="btnEndtest" data-toggle="modal" data-target="#btnEndtestModel">End Test</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="widget-right" id="divQuestionPalleteview">
+            <div class="question-plette" id="question-plette">
+                <div class="header">Questions Pallete</div>
+                <div class="content d-flex justify-content-start" id="QuestionsPallete">
+                    <div id="questions"><div class="question not-visit" id="11" onclick="GetPalleteQuestion(this,&quot;2&quot;)">1</div><div class="question not-visit" id="12" onclick="GetPalleteQuestion(this,&quot;2&quot;)">2</div></div>
+                </div>
+            </div>
+            <div class="legend" id="legend-plette">
+                <div class="header">Legend</div>
+                <div class="content">
+                    <div class="d-flex justify-content-start flex-wrap">
+                        <p class="types"><span class="marker review"><i></i></span>Mark for Review </p>
+                        <p class="types"><span class="marker unattended"><i></i></span>Not Answered</p>
+                        <p class="types" style="padding-left:0px;"><span class="marker answered"><i></i></span>Answered</p>
+                        <p class="types"><span class="marker skipped"><i></i></span>Not Visited</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="test-container">
+            <div class="main-test-conatiner">
+                <button class="btn toggle" type="button" id="collapse-widget" name="button">Close</button>
+                <div class="header-section d-flex justify-content-between" id="divSection">
+                    <ul class="nav nav-pills" id="divSectionButtons"><li class="nav-item" style="cursor: default;"> <a id="S37887" name="S37887" value="1" class="nav-link default" onclick="InvokeSectionButton(this)" style="pointer-events: all;"> Aptitude</a></li>   <li class="nav-item" style="cursor: not-allowed;"> <a id="S37888" name="S37888" value="2" class="nav-link active" onclick="InvokeSectionButton(this)" style="pointer-events: none;"> Coding</a></li>   </ul>
+                </div>
+
+                <!--Other section Navbar except codingsimulation-->
+
+                <div class="header d-flex justify-content-between" id="divNavbar" style="display: none !important">
+                    <span id="divSectionName">Coding</span>
+                    <span>Question : <strong id="sCurrentQuestoinSNo">1</strong> of <strong id="sTotalQuestion">2</strong> </span>
+                </div>
+                <!--Coding simulation Navbar-->
+                <div class="header d-flex justify-content-between flex-sm-row flex-column h-auto" id="questions-nav-info" style="display: flex  !important">
+                    <div class="problem-area" id="problem-n-test">
+                        <ul class="nav nav-pills hme-nav-problem" id="questionProblemArea" role="tablist">
+                            <li class="nav-item" id="problem-statement">
+                                <a class="nav-link active" onclick="showCodingTabcontrol(&#39;#problem-tab&#39;)" id="problem-tab" data-toggle="tab" href="https://proassess.hiremee.co.in/Assessment/LoadAssessment#problem" role="tab" aria-controls="problem" aria-selected="true">Problem</a>
+                            </li>
+                            <li class="nav-item" id="test-case">
+                                <a class="nav-link" onclick="showCodingTabcontrol(&#39;#test-case-tab&#39;)" id="test-case-tab" data-toggle="tab" href="https://proassess.hiremee.co.in/Assessment/LoadAssessment#test-case" role="tab" aria-controls="test-case-tab" aria-selected="false">Test Case <span class="" id="codeResult"></span></a>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="code-area d-flex justify-content-between inside-code">
+                        <div class="action-wrapper d-flex align-items-center">
+
+                            <div id="code-actions" class="btn-group btn-group-sm" role="group" aria-label="Button group with nested dropdown">
+                                <div class="btn-group" role="group">
+                                    <button id="expand-code-area" type="button" class="btn btn-warning toggle-question">Expand </button>
+                                    <label class="select-label">
+                                        <select name="idLanguage" id="select" type="button" class="btn-code dropdown-toggle" data-placement="top" style="padding: 0px 10px 0px 10px;" data-original-title="Python" title=""><option value="text/x-c++src">C++</option><option value="text/x-python">Python</option><option value="text/x-csrc">C</option><option value="text/x-java">Java</option><option value="text/x-perl">Perl</option><option value="text/x-csharp">C#</option><option value="text/x-pascal">Pascal</option><option value="text/x-ruby">Ruby</option><option value="text/x-php">PHP</option></select>
+                                    </label>
+                                </div>
+                                <span class="m-2"></span>
+                                <button type="button" id="btnCodeMirrorSubmit" onclick="return BtnCodemirrorSubmitClick()" class="btn btn-danger">Submit Code</button>
+                            </div>
+                        </div>
+                        <span>Question : <strong id="sCodingCurrentQuestoinSNo">1</strong> of <strong id="sCodingTotalQuestion">2</strong> </span>
+                    </div>
+                </div>
+
+
+                <div class="content-wrapper condingContent" id="contntWrapper">
+                    <p class="d-flex justify-content-start flex-wrap flex-sm-nowrap" id="AllOptionQuestionWithoutCoding" style="display: none !important">
+                        <span class="qno" id="sQuestionSNo" style="display: none;">1.</span>
+                        <span id="sQuestion" style="overflow: auto; max-height: 150px;">&lt;p&gt;Choose a programming language from the language dropdown given alongside before coding.&lt;br /&gt;
+&lt;br /&gt;
+&lt;strong&gt;&lt;u&gt;Problem Statement&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Given an array of distinct integers. The task is to count all the triplets such that sum of two elements equals the third element.&lt;br /&gt;
+&amp;nbsp;&lt;br /&gt;
+&lt;strong&gt;&lt;u&gt;Example 1:&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;u&gt;&lt;strong&gt;Input:&lt;/strong&gt;&lt;/u&gt;&lt;br /&gt;
+4 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; // Value of N = 4&lt;br /&gt;
+1 5 3 2 &amp;nbsp; &amp;nbsp; // Value of arr[] = {1, 5, 3, 2}&lt;/p&gt;
+
+&lt;p&gt;&lt;u&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/u&gt;&amp;nbsp;&lt;br /&gt;
+2&lt;/p&gt;
+
+&lt;p&gt;&lt;u&gt;&lt;strong&gt;Explanation:&lt;/strong&gt;&lt;/u&gt;&lt;br /&gt;
+There are 2 triplets:&amp;nbsp;&lt;br /&gt;
+1 + 2 = 3 and 3 +2 = 5&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&lt;u&gt;&lt;strong&gt;Example 2:&lt;/strong&gt;&lt;/u&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;u&gt;Input:&lt;/u&gt;&lt;/strong&gt;&lt;br /&gt;
+3 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; // Value of N = 3&lt;br /&gt;
+2 3 4 &amp;nbsp; &amp;nbsp; &amp;nbsp; // Value of arr[] = {2, 3, 4}&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;u&gt;Output:&lt;/u&gt;&lt;/strong&gt;&lt;br /&gt;
+0&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;u&gt;Explanation:&lt;/u&gt;&lt;/strong&gt;&lt;br /&gt;
+No such triplet exits&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&lt;u&gt;&lt;strong&gt;Your Task:&lt;/strong&gt;&lt;/u&gt;&lt;br /&gt;
+Your task is to write a program which takes the array arr[] and N as inputs and returns the triplet count&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;u&gt;Constraints:&lt;/u&gt;&lt;/strong&gt;&lt;br /&gt;
+1 &amp;le; N &amp;le; 103&lt;br /&gt;
+1 &amp;le; arr[i] &amp;le; 105&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</span>
+
+                        <!--Paragraph Type Controls-->
+                        <span id="paragraphQuestion" class="paragraphtype para-qus" style="display: none;">
+                            <span id="divParagraphQuestionSet" style="overflow:auto;padding-right:8px;" class="row">
+                                <span class="form-radio">
+                                    <span class="col-md-12">
+                                        <span class="row">
+                                            <span id="divParagraphQuestions" class=""></span>
+
+                                        </span>
+                                    </span>
+                                </span>
+                            </span>
+                            <span id="divParagraphOptionSet" class="row">
+                                <span class="form-radio">
+                                    <span class="col-md-12">
+                                        <span class="row">
+                                            <span id="divParagraphOptions">
+                                            </span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </span>
+                        </span>
+
+                        </p><div class="p-l-35 p-t-15" id="divmultiMedia">
+                            <span id="sQuestionMultimedia" class="mcq-img" style="display: none;"></span>
+                        </div>
+                        <div id="divQuestionSet">
+                            <div class="form-radio">
+                                <div class="col-md-12">
+                                    <div id="divQuestionOptions" style="word-break: break-word; display: none;"></div>
+                                    <div id="divMcqWeightageOptions"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="divConstantOptions"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="divPsychometricQuestionSet">
+                            <div class="form-radio">
+                                <div class="col-md-12 p-l-32">
+                                    <div id="divPsychometricQuestions"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="divPsychometricOptionSet">
+                            <div class="form-radio">
+                                <div class="col-md-12 m-l-45">
+                                    <div id="divPsychometricOptions"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Subjective Type Controls -->
+                        <div id="divSubjectiveType" class="p-l-28" style="display: none;">
+                            <div style="float: right;">
+                                <span id="altSubfile" style="color: red; display: none;">Maximum 5MB data in png, jpg and pdf format.</span>
+                                <span id="subjectiveUpload" style="display: none;">
+                                    <span id="uploadFile" style="display: none;">
+                                        <button type="button" class="subjectiveupload" id="attachfile" onclick="getFile()" title="upload file">Browse File</button>
+                                        
+                                        <input style="display:none" id="upfile" name="files[]" accept=".pdf,.png, .jpg,.jpeg" type="file" value="upload" onchange="uploadedFileInfo()">
+                                    </span>
+
+                                    <span id="btnToggle" title="Switch ON/OFF for browse/remove file">
+                                        Click here to upload file
+                                        <label class="switch">
+                                            <input id="toggleCheckbox" type="checkbox">
+                                            <span id="toggleSpan" class="slider round" onclick="toggleButton();"></span>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        <button type="button" class="ml-3 btn btn-primary" id="btnViewSimulatior" data-toggle="modal" data-target="#divSubjectiveHtmlViewModal" style="display: none;">View Simulation</button>
+                                    </span>
+                                </span>
+
+                            </div>
+                            <div style="float:left;width:100%;">
+                                <div id="SelectedFiles" class="child-list-wrapper subjectivefile"></div>
+                            </div>
+                            <div style="float:right;width:100%;padding-bottom:20%;" class="sub-qus">
+
+                                <textarea id="txtSubjectiveType" class="form-control input-lg textarea-editor" style="width: 100%; height: 300px; resize: none; display: none;"></textarea><div class="note-editor note-frame panel"><div class="note-toolbar-wrapper panel-default subjectiveeditorbg" style="height: 0px;"><div class="note-toolbar panel-heading" style="position: relative; top: 0px; width: 100%;"><div class="note-btn-group btn-group note-font"><button type="button" class="note-btn btn btn-default btn-sm note-btn-bold" tabindex="-1" title="" data-original-title="Bold (CTRL+B)"><i class="note-icon-bold"></i></button><button type="button" class="note-btn btn btn-default btn-sm note-btn-underline" tabindex="-1" title="" data-original-title="Underline (CTRL+U)"><i class="note-icon-underline"></i></button><button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Remove Font Style (CTRL+\)"><i class="note-icon-eraser"></i></button></div></div></div><div class="note-editing-area"><div class="note-handle"><div class="note-control-selection"><div class="note-control-selection-bg"></div><div class="note-control-holder note-control-nw"></div><div class="note-control-holder note-control-ne"></div><div class="note-control-holder note-control-sw"></div><div class="note-control-sizing note-control-se"></div><div class="note-control-selection-info"></div></div></div><textarea class="note-codable"></textarea><div class="note-editable" id="subjectiveEditor" spellcheck="false" ondrop="return false;" onpaste="return false;" contenteditable="true" style="height: 300px;"><p><br></p></div></div><div class="note-statusbar">  <div class="note-resizebar">    <div class="note-icon-bar"></div>    <div class="note-icon-bar"></div>    <div class="note-icon-bar"></div>  </div></div><div class="modal link-dialog" aria-hidden="false" tabindex="-1"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>      <h4 class="modal-title">Insert Link</h4>    </div>    <div class="modal-body"><div class="form-group note-form-group"><label class="note-form-label">Text to display</label><input class="note-link-text form-control note-form-control  note-input" type="text"></div><div class="form-group note-form-group"><label class="note-form-label">To what URL should this link go?</label><input class="note-link-url form-control note-form-control note-input" type="text" value="http://"></div><div class="checkbox"> <label for="sn-checkbox-open-in-new-window"> <input type="checkbox" id="sn-checkbox-open-in-new-window" checked="">Open in new window</label></div></div>    <div class="modal-footer"><button type="submit" href="#" class="btn btn-primary note-btn note-btn-primary note-link-btn" disabled="">Insert Link</button></div>  </div></div></div><div class="modal" aria-hidden="false" tabindex="-1"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>      <h4 class="modal-title">Insert Image</h4>    </div>    <div class="modal-body"><div class="form-group note-form-group note-group-select-from-files"><label class="note-form-label">Select from files</label><input class="note-image-input note-form-control note-input" type="file" name="files" accept="image/*" multiple="multiple"></div><div class="form-group note-group-image-url" style="overflow:auto;"><label class="note-form-label">Image URL</label><input class="note-image-url form-control note-form-control note-input  col-md-12" type="text"></div></div>    <div class="modal-footer"><button type="submit" href="#" class="btn btn-primary note-btn note-btn-primary note-image-btn" disabled="">Insert Image</button></div>  </div></div></div><div class="modal" aria-hidden="false" tabindex="-1"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>      <h4 class="modal-title">Insert Video</h4>    </div>    <div class="modal-body"><div class="form-group note-form-group row-fluid"><label class="note-form-label">Video URL <small class="text-muted">(YouTube, Vimeo, Vine, Instagram, DailyMotion or Youku)</small></label><input class="note-video-url form-control note-form-control note-input" type="text"></div></div>    <div class="modal-footer"><button type="submit" href="#" class="btn btn-primary note-btn note-btn-primary note-video-btn" disabled="">Insert Video</button></div>  </div></div></div><div class="modal" aria-hidden="false" tabindex="-1"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>      <h4 class="modal-title">Help</h4>    </div>    <div class="modal-body" style="max-height: 300px; overflow: scroll;"><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>ENTER</kbd></label><span>Insert Paragraph</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>TAB</kbd></label><span>Tab</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+B</kbd></label><span>Set a bold style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+U</kbd></label><span>Set a underline style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+BACKSLASH</kbd></label><span>Clean a style</span></div>    <div class="modal-footer"><p class="text-center"><a href="http://summernote.org/" target="_blank">Summernote 0.8.9</a> · <a href="https://github.com/summernote/summernote" target="_blank">Project</a> · <a href="https://github.com/summernote/summernote/issues" target="_blank">Issues</a></p></div>  </div></div></div></div>
+                                <b><span id="spnCharCount" style="font-size: 13px; color: Gray;  text-align:right;"></span></b>
+                            </div>
+
+                        </div>
+                        <div id="divSubjectiveManualEvaluation" style="display: none;padding-bottom:20%;">
+                            <div class="p-l-35  col-md-3">
+                                <b>Enter Your Answer</b>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="txtSubjectiveManualEvaluation" autocomplete="off">
+                            </div>
+                        </div>
+
+
+                        <!--Essay Type-->
+                        <div id="divEssayType" class="textarea-custom" style="display: none;">
+                            <textarea id="txtEssayType" style="width: 100%;height:300px;resize: none;" ondrop="return false;" onpaste="return false;"></textarea>
+                        </div>
+
+                        <!--TypingTest Controls-->
+                        <div id="divTypingTest" class="col-md-12 m-b-20 textarea-custom" style="display: none;">
+                            <textarea id="txtTypingTest" style="width: 100%; height:270px;resize: none;" spellcheck="false" onkeydown="restirctArrowKeys(event)" onkeyup="ForAvoidInitialSpaces(this,event);" ondrop="return false;" onpaste="return false;"></textarea>
+                            
+
+                            <button id="btnTypeEndTest" class="btn btn-primary btn-lg" style="float:right;display: none;" type="button" value="TypeEndTest">
+                                Submit
+                            </button>
+                            <button id="btnTypeCancelTest" class="btn btn-primary" style="float:right;display: none;" type="button" value="TypeCancelTest">
+                                Cancel
+                            </button>
+                            <input type="hidden" id="hdnTypeTestResult">
+                        </div>
+
+                    <p></p>
+
+                    <!--Coding Simulation-->
+                    <div class="coding-area d-flex justify-content-between code-qus" style="display: flex !important; margin-top:-16px !important" id="questionProblemAreaContent">
+                        <div class="problem-area tab-pane fade show active d-block d-sm-flex" id="codeingSnoProblem" style="">
+                            <span class="qno" id="sCodingQuestionSNo" style="padding-top: 10px;">1.</span>
+                            <span style="overflow-y:auto;width:100%; padding-top:10px" id="problem"><p>Choose a programming language from the language dropdown given alongside before coding.<br>
+<br>
+<strong><u>Problem Statement</u></strong></p>
+
+<p>Given an array of distinct integers. The task is to count all the triplets such that sum of two elements equals the third element.<br>
+&nbsp;<br>
+<strong><u>Example 1:</u></strong></p>
+
+<p><u><strong>Input:</strong></u><br>
+4 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Value of N = 4<br>
+1 5 3 2 &nbsp; &nbsp; // Value of arr[] = {1, 5, 3, 2}</p>
+
+<p><u><strong>Output:</strong></u>&nbsp;<br>
+2</p>
+
+<p><u><strong>Explanation:</strong></u><br>
+There are 2 triplets:&nbsp;<br>
+1 + 2 = 3 and 3 +2 = 5&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><u><strong>Example 2:</strong></u></p>
+
+<p><strong><u>Input:</u></strong><br>
+3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Value of N = 3<br>
+2 3 4 &nbsp; &nbsp; &nbsp; // Value of arr[] = {2, 3, 4}</p>
+
+<p><strong><u>Output:</u></strong><br>
+0</p>
+
+<p><strong><u>Explanation:</u></strong><br>
+No such triplet exits</p>
+
+<p>&nbsp;</p>
+
+<p><u><strong>Your Task:</strong></u><br>
+Your task is to write a program which takes the array arr[] and N as inputs and returns the triplet count</p>
+
+<p><strong><u>Constraints:</u></strong><br>
+1 ≤ N ≤ 103<br>
+1 ≤ arr[i] ≤ 105</p>
+
+<p>&nbsp;</p></span>
+                        </div>
+                        <span class="problem-area tab-pane fade show active" style="overflow-y:auto;display:none;padding-top:10px" id="testcase"></span>
+                        <div class="code-area d-flex flex-column" id="code-area-env">
+                            <div id="codeEditor" class="code"><textarea style="height: 600px !important; display: none;" id="editor_8409" onload="test()"></textarea><div class="CodeMirror cm-s-eclipse"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 95px; left: 50.5px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true" style="bottom: 0px; display: block;"><div style="min-width: 1px; height: 528px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true" style="right: 0px; left: 30px;"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true" style="height: 8px; width: 8px;"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 30px; margin-bottom: -8px; border-right-width: 22px; min-height: 548px; min-width: 246.24px; padding-right: 8px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors" style="visibility: hidden;"><div class="CodeMirror-cursor" style="left: 20.5px; top: 90px; height: 22.5px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation" style=""><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  </span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">def</span> <span class="cm-def">counttrip</span>(<span class="cm-variable">ar</span>,<span class="cm-variable">n</span>):</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">a</span><span class="cm-operator">=</span>[<span class="cm-number">0</span> <span class="cm-keyword">for</span> <span class="cm-variable">i</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span> (<span class="cm-number">100</span>)]</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">5</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" class="cm-tab-wrap-hack" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">6</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" class="cm-tab-wrap-hack" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">7</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" class="cm-tab-wrap-hack" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">8</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-keyword">for</span> <span class="cm-variable">i</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-variable">n</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">9</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span>   <span class="cm-variable">a</span>[<span class="cm-variable">ar</span>[<span class="cm-variable">i</span>]]<span class="cm-operator">+=</span><span class="cm-number">1</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">10</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">count</span><span class="cm-operator">=</span><span class="cm-number">0</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">11</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" class="cm-tab-wrap-hack" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">12</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-keyword">for</span> <span class="cm-variable">i</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span> (<span class="cm-variable">n</span>):</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">13</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-keyword">for</span> <span class="cm-variable">j</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-variable">i</span><span class="cm-operator">+</span><span class="cm-number">1</span>,<span class="cm-variable">n</span>,<span class="cm-number">1</span>):</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">14</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span> <span class="cm-keyword">if</span> (<span class="cm-variable">a</span>[<span class="cm-variable">ar</span>[<span class="cm-variable">i</span>] <span class="cm-operator">+</span> <span class="cm-variable">ar</span>[<span class="cm-variable">j</span>]]):</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">15</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">count</span><span class="cm-operator">+=</span><span class="cm-number">1</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">16</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" class="cm-tab-wrap-hack" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">17</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-keyword">return</span> <span class="cm-variable">count</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">18</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">19</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">if</span> <span class="cm-variable">__name__</span><span class="cm-operator">==</span><span class="cm-string">'__main__'</span>:</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">20</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">n</span><span class="cm-operator">=</span><span class="cm-number">4</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">21</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">ar</span><span class="cm-operator">=</span>[<span class="cm-number">1</span>,<span class="cm-number">5</span>,<span class="cm-number">3</span>,<span class="cm-number">2</span>]</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">22</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">23</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-builtin">print</span>(<span class="cm-variable">counttrip</span>(<span class="cm-variable">ar</span>,<span class="cm-variable">n</span>))</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">24</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" class="cm-tab-wrap-hack" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 22px; width: 1px; border-bottom: 0px solid transparent; top: 548px;"></div><div class="CodeMirror-gutters" style="height: 570px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div></div></div></div><textarea id="Compile" style="display: none;width: 30%; height: 100px"></textarea></div>
+                            <div class="custom-input">
+                                <div class="custom-input-header d-flex justify-content-between">
+                                    <span>Test Against Custom Input</span>
+                                    <div class="d-flex justify-content-end align-items-center">
+                                        <button class="btn btn-code-run" onclick="return PostSphereEngineCompileResult()">Run</button>
+                                        <span onclick="myFunction(this)" class="lnr lnr-chevron-up toggle-test" id="toggle-custom-test"></span>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <div class="input-area">
+                                        <span class="input">Input</span>
+                                        <textarea id="text" style="height:95%;width:100%;border:none;resize: none;">                                        </textarea>
+                                    </div>
+                                    <div class="output-area">
+                                        <span class="input">output</span>
+                                        <div id="divProgrammingRunCode"><div id="compilerMsgDiv"><b style="color:red"><div id="statusDiv"><i class="fa fa-times-circle" aria-hidden="true" style="color: red;"></i>&nbsp; 'compilation error'</div></b><br><b>Compiler Message</b><br><p style="color:red">Traceback (most recent call last):
+  File "/usr/lib/python3.5/py_compile.py", line 125, in compile
+    _optimize=optimize)
+  File "<frozen importlib._bootstrap_external="">", line 735, in source_to_code
+  File "<frozen importlib._bootstrap="">", line 222, in _call_with_frames_removed
+  File "./prog.py", line 10
+    for i in range(n)
+                    ^
+SyntaxError: invalid syntax
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.5/py_compile.py", line 129, in compile
+    raise py_exc
+py_compile.PyCompileError:   File "./prog.py", line 10
+    for i in range(n)
+                    ^
+SyntaxError: invalid syntax
+
+</module></string></frozen></frozen></p></div><br><div id="errorDiv" style="display: none;"><b><p style="color:black">Error Message</p></b><p style="color:red">null</p><p></p></div><br><div id="outputDiv" style="display: none;"><b>Output Status</b><br><p style="background:#fff;border-bottom: 3px solid red">null</p></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- The Modal Adjective Help -->
+                <div id="adjectiveHelp" class="adjmodal" style="display: none;">
+
+                    <!-- Modal content -->
+                    <div class="adjmodal-content">
+                        <span class="adjectiveClose">×</span>
+                        <span style="color:white"><i style="padding-right:10px;" class="fa fa-lg fa-question-circle"></i>Help</span>
+                        <div class="modal-Innercontent">
+                            Drag and drop the relevant Items of the appropriate section provided at the right side the screen,
+                            bordered as Red and Green respectively
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="bottom-sheet">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-start">
+                        <button id="btnPrevious" class="btn btn-sm btn-hme-test btn-previous" style="display: block;"><i class="fa fa-chevron-left  p-r-10"></i>Previous</button>
+                        <button id="btnNext" class="btn btn-sm btn-hme-test btn-next">Next <i class="fa fa-chevron-left  p-r-10"></i></button>
+                    </div>
+                    <div class="d-flex justify-content-end align-items-center">
+                        <button class="btn btn-sm btn-hme-test btn-review" id="btnMarkForReview">Mark for Review</button>
+                        <button class="btn btn-sm btn-hme-test btn-instruction" id="btnInstruction" data-toggle="modal" data-target="#assessment-instructions">Instructions</button>
+                        <button class="btn btn-sm btn-primary" id="button_calc" data-toggle="modal" data-target="#divCalc" style="display: none;">Calculator</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <input name="TestPin" id="TestPin" style="display:none">
+    <input name="ExamName" id="ExamName" style="display:none">
+    <input name="CompanyID" id="CompanyID" style="display:none">
+    <input name="AssignID" id="AssignID" style="display:none">
+    <input name="LoginAuditID" id="LoginAuditID" style="display:none">
+    <input name="candidate_id" id="candidate_id" style="display:none">
+    <input name="is_feedback" id="is_feedback" style="display:none">
+    <input name="is_score_display" id="is_score_display" style="display:none">
+    <input name="redirect_url" id="redirect_url" style="display:none">
+    <input name="Token" id="Token" style="display:none">
+    <input name="exam_duration" id="exam_duration" style="display:none">
+    <input name="attempt_id" id="attempt_id" style="display:none">
+
+    <!-- Modal -->
+    <div class="modal fade assessment-instructions modal-padding" data-backdrop="static" data-keyboard="false" id="assessment-instructions" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="margin-top:100px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="lblInstructionName"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="lnr lnr-cross" id="btnModelClose"></span>
+                    </button>
+                </div>
+                <div class="modal-body mCustomScrollbar _mCS_1 mCS_no_scrollbar" style="height:auto"><div id="mCSB_1" class="mCustomScrollBox mCS-dark-3 mCSB_vertical mCSB_inside" tabindex="0"><div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                    <div class="instruction" id="lblInstruction">
+                    </div>
+                </div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-dark-3 mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; top: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary" id="btnOkModelCloase" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade assessment-instructions" data-backdrop="static" data-keyboard="false" id="btnEndtestModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="margin-top:100px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Are you sure you want to end this Test </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="lnr lnr-cross" id="btnEndtestModelClose"></span>
+                    </button>
+                </div>
+                <div class="modal-body mCustomScrollbar _mCS_2 mCS_no_scrollbar" style="overflow:auto;max-height:90%!important;padding-left:2%;max-width:95%!important;"><div id="mCSB_2" class="mCustomScrollBox mCS-dark-3 mCSB_vertical mCSB_inside" tabindex="0"><div id="mCSB_2_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                    <h6 class="modal-title" style="">Custom Form Details</h6><br>
+                    <div id="divCustomForm">
+                        <table style="border-collapse: collapse; width: 100%;">
+                            <tbody><tr class="EndtestTable">
+                                <th class="EndtestTable">Fields</th>
+                                <th class="EndtestTable">Values</th>
+                            </tr>
+                            </tbody><tbody id="tblCustomFormDetails"></tbody>
+                        </table>
+                    </div>
+                    <div id="divCustomFormText" style="display:none!important;"></div>
+                    <br>
+                    <h6 class="modal-title">Subjective File Details</h6><br>
+                    <div id="divSubDetails">
+                        <table style="border-collapse: collapse; width: 100%;">
+                            <tbody><tr class="EndtestTable">
+                                <th class="EndtestTable">Section Name</th>
+                                <th class="EndtestTable">Question No</th>
+                                <th class="EndtestTable">No of files Uploaded</th>
+                            </tr>
+                            </tbody><tbody id="tblSubjectiveDetails"></tbody>
+                        </table>
+                    </div>
+                    <div id="divSubjectiveText" style="display:none!important;"></div>
+                    <br>
+                    <div id="divMarkforReview">
+                        <h6 class="modal-title">Marked for Review Question Count :  <span id="marforReviewCount"></span></h6><br>
+                    </div>
+                </div><div id="mCSB_2_scrollbar_vertical" class="mCSB_scrollTools mCSB_2_scrollbar mCS-dark-3 mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_2_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; top: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary" id="btnEndtestSave" data-dismiss="modal">Proceed &amp; Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="divCalc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="margin-top:100px;max-width:536px!important">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #024059;color:white;height: 40px;padding: 8px;">
+                    <h5 class="modal-title">Calculator</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="lnr lnr-cross" id="btnCalcModelClose"></span>
+                    </button>
+                </div>
+                <div class="modal-body mCustomScrollbar _mCS_3 mCS_no_scrollbar" style="height:auto"><div id="mCSB_3" class="mCustomScrollBox mCS-dark-3 mCSB_vertical mCSB_inside" tabindex="0"><div id="mCSB_3_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                    <!-- calculator -->
+
+<div class="calc-main" id="cal">
+    <div class="calc-display">
+        <span>0</span>
+        <div class="calc-rad">Rad</div>
+        <div class="calc-hold"></div>
+        <div class="calc-buttons" style="display:none;">
+            <div class="calc-info">?</div>
+            <div class="calc-smaller">&gt;</div>
+            <div class="calc-ln">.</div>
+        </div>
+    </div>
+    <div class="calc-left">
+        <div><div>2nd</div></div>
+        <div><div>(</div></div>
+        <div><div>)</div></div>
+        <div><div>%</div></div>
+        <div><div>1/x</div></div>
+        <div><div>x<sup>2</sup></div></div>
+        <div><div>x<sup>3</sup></div></div>
+        <div><div>y<sup>x</sup></div></div>
+        <div><div>x!</div></div>
+        <div><div>√</div></div>
+        <div>
+            <div class="calc-radxy">
+                <sup>x</sup><em>√</em><span>y</span>
+            </div>
+        </div>
+        <div><div>log</div></div>
+        <div><div>sin</div></div>
+        <div><div>cos</div></div>
+        <div><div>tan</div></div>
+        <div><div>ln</div></div>
+        <div><div>sinh</div></div>
+        <div><div>cosh</div></div>
+        <div><div>tanh</div></div>
+        <div><div>e<sup>x</sup></div></div>
+        <div><div>Deg</div></div>
+        <div><div>π</div></div>
+        <div><div>EE</div></div>
+        <div><div>Rand</div></div>
+    </div>
+    <div class="calc-right">
+        <div><div>mc</div></div>
+        <div><div>m+</div></div>
+        <div><div>m-</div></div>
+        <div><div>mr</div></div>
+        <div class="calc-brown"><div>AC</div></div>
+        <div class="calc-brown"><div>+/–</div></div>
+        <div class="calc-brown calc-f19"><div>÷</div></div>
+        <div class="calc-brown calc-f21"><div>×</div></div>
+        <div class="calc-black"><div>7</div></div>
+        <div class="calc-black"><div>8</div></div>
+        <div class="calc-black"><div>9</div></div>
+        <div class="calc-brown calc-f18"><div>–</div></div>
+        <div class="calc-black"><div>4</div></div>
+        <div class="calc-black"><div>5</div></div>
+        <div class="calc-black"><div>6</div></div>
+        <div class="calc-brown calc-f18"><div>+</div></div>
+        <div class="calc-black"><div>1</div></div>
+        <div class="calc-black"><div>2</div></div>
+        <div class="calc-black"><div>3</div></div>
+        <div class="calc-blank"><textarea></textarea></div>
+        <div class="calc-orange calc-eq calc-f17">
+            <div>
+                <div class="calc-down">=</div>
+            </div>
+        </div>
+        <div class="calc-black calc-zero">
+            <div>
+                <span>0</span>
+            </div>
+        </div>
+        <div class="calc-black calc-f21"><div>.</div></div>
+    </div>
+</div>
+
+                </div><div id="mCSB_3_scrollbar_vertical" class="mCSB_scrollTools mCSB_3_scrollbar mCS-dark-3 mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_3_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; top: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal  assessment-instructions" data-backdrop="static" data-keyboard="false" id="divSubjectiveHtmlViewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body mCustomScrollbar _mCS_4 mCS_no_scrollbar"><div id="mCSB_4" class="mCustomScrollBox mCS-dark-3 mCSB_vertical mCSB_inside" tabindex="0"><div id="mCSB_4_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                    <div id="divHtmlView">
+                        <embed id="embedSubjectiveView" src="https://s3.ap-south-1.amazonaws.com/uat.hiremeepro/Corporate_test/simulation_new.html" style="min-height:500px;" width="100%">
+                    </div>
+                </div><div id="mCSB_4_scrollbar_vertical" class="mCSB_scrollTools mCSB_4_scrollbar mCS-dark-3 mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_4_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; top: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary" id="btnSubjectiveHtmlViewCls" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal  assessment-instructions" data-backdrop="static" data-keyboard="false" id="divMultimediaPdfView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body mCustomScrollbar _mCS_5 mCS_no_scrollbar"><div id="mCSB_5" class="mCustomScrollBox mCS-dark-3 mCSB_vertical mCSB_inside" tabindex="0"><div id="mCSB_5_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                    <div id="divPdfView"></div>
+                </div><div id="mCSB_5_scrollbar_vertical" class="mCSB_scrollTools mCSB_5_scrollbar mCS-dark-3 mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_5_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; top: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script type="text/javascript">
+        var IsSubjectiveViewSimulationCompanyId = '14010';
+        window.localStorage.setItem("IsSubjectiveViewSimulationCompanyId", IsSubjectiveViewSimulationCompanyId);
+</script>
+
+<script type="text/javascript">
+
+    function myFunction(x) {
+        var className = $("#toggle-custom-test").attr('class');
+        if (String(className) == "lnr lnr-chevron-up toggle-test") {
+            $("#toggle-custom-test").removeClass("lnr lnr-chevron-up toggle-test");
+            $("#toggle-custom-test").addClass("lnr lnr-chevron-down toggle-test");
+
+        }
+        else {
+            $("#toggle-custom-test").removeClass("lnr lnr-chevron-down toggle-test");
+            $("#toggle-custom-test").addClass("lnr lnr-chevron-up toggle-test");
+        }
+    }
+
+    function shiftFn(ken) {
+        var shift = document.getElementById("shiftBtn");
+        var arr = document.getElementsByTagName("td");
+        var arr = document.getElementsByTagName("td");
+        if (ken == 1) {
+            shift.setAttribute("onclick", "shiftFn(0)");
+            shift.style.backgroundColor = "orange";
+            arr[2].innerHTML = "sin<sup>-1</sup>";
+            arr[2].setAttribute("onclick", "trigo1('sin')");
+            arr[3].innerHTML = "cos<sup>-1</sup>";
+            arr[3].setAttribute("onclick", "trigo1('cos')");
+            arr[4].innerHTML = "tan<sup>-1</sup>";
+            arr[4].setAttribute("onclick", "trigo1('tan')");
+            arr[10].innerHTML = "ln";
+            arr[10].setAttribute("onclick", "log(0)");
+            arr[28].innerHTML = "\u0065";
+            arr[28].setAttribute("onclick", "piOrE('e')");
+        } else {
+            shift.setAttribute("onclick", "shiftFn(1)");
+            shift.style.backgroundColor = "yellow";
+            arr[2].innerHTML = "sin";
+            arr[2].setAttribute("onclick", "trigo('sin')");
+            arr[3].innerHTML = "cos";
+            arr[3].setAttribute("onclick", "trigo('cos')");
+            arr[4].innerHTML = "tan";
+            arr[4].setAttribute("onclick", "trigo('tan')");
+            arr[10].innerHTML = "log";
+            arr[10].setAttribute("onclick", "log(1)");
+            arr[28].innerHTML = "\u03C0";
+            arr[28].setAttribute("onclick", "piOrE('pi')");
+        }
+    }
+
+    function input(sun) {
+        var x = document.getElementById("result");
+        var y = document.getElementById("myPara");
+        x.value += sun;
+        y.innerHTML += sun;
+    }
+
+    function factorial(shirious) {
+        if (Number.isInteger(shirious)) {
+            if (shirious < 2) return 1;
+            return shirious * factorial(shirious - 1);
+        }
+    }
+
+    function sqrt() {
+        var x = document.getElementById("result");
+        var y = document.getElementById("myPara");
+        x.value += "sqrt(";
+        y.innerHTML += (/[\d)IE]/.test(y.innerHTML.slice(-1))) ?
+            " * Math.sqrt(" : "Math.sqrt(";
+    }
+
+    function leftParen() {
+        var x = document.getElementById("result");
+        var y = document.getElementById("myPara");
+        x.value += "(";
+        y.innerHTML += (/[\d)IE]/.test(y.innerHTML.slice(-1))) ?
+            " * (" : "(";
+    }
+
+    function piOrE(lunar) {
+        var x = document.getElementById("result");
+        var y = document.getElementById("myPara");
+        if (lunar == "pi") {
+            x.value += "\u03C0";
+            y.innerHTML += (/[\d)IE]/.test(y.innerHTML.slice(-1))) ?
+                " * Math.PI" : "Math.PI";
+        } else {
+            x.value += "\u0065";
+            y.innerHTML += (/[\d)IE]/.test(y.innerHTML.slice(-1))) ?
+                " * Math.E" : "Math.E";
+        }
+    }
+
+    function log(jafca) {
+        var x = document.getElementById("result");
+        var y = document.getElementById("myPara");
+        if (jafca == 1) {
+            x.value += "log(";
+            y.innerHTML += (/[\d)IE]/.test(y.innerHTML.slice(-1))) ?
+                " * Math.log10(" : "Math.log10(";
+        } else {
+            x.value += "ln(";
+            y.innerHTML += (/[\d)IE]/.test(y.innerHTML.slice(-1))) ?
+                " * Math.log(" : "Math.log(";
+        }
+    }
+
+    function trigo(hatsyrei) {
+        var x = document.getElementById("result");
+        var y = document.getElementById("myPara");
+        x.value += hatsyrei + "(";
+        y.innerHTML += (/[\d)IE]/.test(y.innerHTML.slice(-1))) ?
+            " * Math." + hatsyrei + "(Math.PI / 180 * " : "Math." + hatsyrei + "(Math.PI / 180 * ";
+    }
+
+    function trigo1(valentin) {
+        var x = document.getElementById("result");
+        var y = document.getElementById("myPara");
+        x.value += valentin + "\u207B\u00B9("
+        y.innerHTML += (/[\d)IE]/.test(y.innerHTML.slice(-1))) ?
+            " * 180 / Math.PI * Math.a" + valentin + "(" : "180 / Math.PI * Math.a" + valentin + "(";
+    }
+
+    function multOrDiv(edward) {
+        var x = document.getElementById("result");
+        var y = document.getElementById("myPara");
+        if (edward == "mult") {
+            x.value += "\u00D7";
+            y.innerHTML += "*";
+        } else {
+            x.value += "\u00F7";
+            y.innerHTML += "/"
+        }
+    }
+
+    function del() {
+        var x = document.getElementById("result");
+        var y = document.getElementById("myPara");
+        var z = document.getElementById("myAns");
+        if (x.value.slice(-3) == "Ans") {
+            y.innerHTML = (/[\d)IE]/.test(x.value.slice(-4, -3))) ?
+                y.innerHTML.slice(0, -(z.innerHTML.length + 3)) : y.innerHTML.slice(0, -(z.innerHTML.length));
+            x.value = x.value.slice(0, -3);
+        } else if (x.value == "Error!") {
+            ac();
+        } else {
+            switch (y.innerHTML.slice(-2)) {
+                case "* ": // sin cos tan
+                    y.innerHTML = (/[\d)IE]/.test(x.value.slice(-5, -4))) ?
+                        y.innerHTML.slice(0, -28) : y.innerHTML.slice(0, -25);
+                    x.value = x.value.slice(0, -4);
+                    break;
+                case "n(":
+                case "s(": // asin acos atan
+                    y.innerHTML = (/[\d)IE]/.test(x.value.slice(-7, -6))) ?
+                        y.innerHTML.slice(0, -29) : y.innerHTML.slice(0, -26);
+                    x.value = x.value.slice(0, -6);
+                    break;
+                case "0(": // log
+                    y.innerHTML = (/[\d)IE]/.test(x.value.slice(-5, -4))) ?
+                        y.innerHTML.slice(0, -14) : y.innerHTML.slice(0, -11);
+                    x.value = x.value.slice(0, -4);
+                    break;
+                case "g(": // ln
+                    y.innerHTML = (/[\d)IE]/.test(x.value.slice(-4, -3))) ?
+                        y.innerHTML.slice(0, -12) : y.innerHTML.slice(0, -9);
+                    x.value = x.value.slice(0, -3);
+                    break;
+                case "t(": // sqrt
+                    y.innerHTML = (/[\d)IE]/.test(x.value.slice(-6, -5))) ?
+                        y.innerHTML.slice(0, -13) : y.innerHTML.slice(0, -10);
+                    x.value = x.value.slice(0, -5);
+                    break;
+                case "PI": // pi
+                    y.innerHTML = (/[\d)IE]/.test(x.value.slice(-2, -1))) ?
+                        y.innerHTML.slice(0, -10) : y.innerHTML.slice(0, -7);
+                    x.value = x.value.slice(0, -1);
+                    break;
+                case ".E": // e
+                    y.innerHTML = (/[\d)IE]/.test(x.value.slice(-2, -1))) ?
+                        y.innerHTML.slice(0, -9) : y.innerHTML.slice(0, -6);
+                    x.value = x.value.slice(0, -1);
+                    break;
+                default:
+                    y.innerHTML = y.innerHTML.slice(0, -1);
+                    x.value = x.value.slice(0, -1);
+            };
+        }
+    }
+
+    function ac() {
+        var x = document.getElementById("result");
+        var y = document.getElementById("myPara");
+        x.value = y.innerHTML = "";
+    }
+
+    function ans() {
+        var x = document.getElementById("result");
+        var y = document.getElementById("myPara");
+        var z = document.getElementById("myAns");
+        x.value += "Ans";
+        y.innerHTML += (/[\d)IE]/.test(y.innerHTML.slice(-1))) ?
+            " * " + z.innerHTML : z.innerHTML;
+    }
+
+    function equal() {
+        var x = document.getElementById("result");
+        var y = document.getElementById("myPara");
+        var z = document.getElementById("myAns");
+        for (var i = 0; i < x.value.split("(").length - x.value.split(")").length; i++) {
+            y.innerHTML += ")";
+        }
+        if (y.innerHTML != "") {
+            x.value = y.innerHTML = z.innerHTML = eval(y.innerHTML
+                .replace(/(\d+\.?\d*)\!/g, "factorial($1)")
+                .replace(/(\(?[^(]*\)?)\^(\(?.*\)?)/, "Math.pow($1, $2)")
+            );
+        }
+        if (!isFinite(x.value)) x.value = "Error!";
+    }
+
+    $(document).ready(function () {
+
+        var inputfile = $("#upfile");
+        inputfile.on("change click", function (ev) {
+            document.body.onfocus = function () {
+                document.body.onfocus = null;
+                setTimeout(function () {
+                    if (inputfile.val().length === 0) {
+                        iswindowproct = false;
+                    }
+                }, 100);
+            };
+        });
+
+        $('#txtSubjectiveType').summernote({
+            //lang: 'fa-IR',
+            height: 300, // set editor height
+            minHeight: null, // set minimum height of editor
+            maxHeight: null, // set maximum height of editor
+            focus: true,// set focus to editable area after initializing summernote
+            callbacks: {
+                onBlur: function () {
+                    UpdateSubAns();
+                }
+            }
+        });
+
+        document.getElementsByClassName('note-popover popover in note-link-popover bottom')[0].remove();
+        document.getElementsByClassName('note-popover popover in note-image-popover bottom')[0].remove();
+        document.getElementsByClassName('note-popover popover in note-table-popover bottom')[0].remove();
+        document.getElementsByClassName('note-btn-group btn-group note-style')[0].remove();
+        document.getElementsByClassName('note-btn-group btn-group note-fontname')[0].remove();
+        document.getElementsByClassName('note-btn-group btn-group note-color')[0].remove();
+        document.getElementsByClassName('note-btn-group btn-group note-para')[0].remove();
+        document.getElementsByClassName('note-btn-group btn-group note-table')[0].remove();
+        document.getElementsByClassName('note-btn-group btn-group note-insert')[0].remove();
+        document.getElementsByClassName('note-btn-group btn-group note-view')[0].remove();
+
+        // Get the modal
+        var modal = document.getElementById("adjectiveHelp");
+        var span = document.getElementsByClassName("adjectiveClose")[0];
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="./HireMee Assessment_files/jquery-1.8.3.min.js.download"></script>
+
+    <script src="./HireMee Assessment_files/Sweetalert2@9.js.download"></script>
+    <script src="./HireMee Assessment_files/jwplayer.js.download"></script>
+    <script>jwplayer.key = "57M8H6Hn0mkf9SlfNiJenQdqjZtEq6ZZ14bBbA==";</script>
+    <script src="./HireMee Assessment_files/mCustomScrollbar.min.js.download"></script>
+    <script src="./HireMee Assessment_files/easing.min.js.download"></script>
+    <script src="./HireMee Assessment_files/bootstrap-tour-standalone.min.js.download"></script>
+    <script src="./HireMee Assessment_files/bootstrap-tour.min.js.download"></script>
+
+    <script src="./HireMee Assessment_files/summernote.js.download"></script>
+    <script src="./HireMee Assessment_files/sha256.js.download"></script>
+
+    <script src="./HireMee Assessment_files/closebrackets.js.download"></script>
+    <script src="./HireMee Assessment_files/matchbrackets.js.download"></script>
+    <script src="./HireMee Assessment_files/continuelist.js.download"></script>
+    <script src="./HireMee Assessment_files/markdown.js.download"></script>
+    <script src="./HireMee Assessment_files/python.js.download"></script>
+    <script src="./HireMee Assessment_files/clike.js.download"></script>
+    <script src="./HireMee Assessment_files/perl.js.download"></script>
+    <script src="./HireMee Assessment_files/ruby.js.download"></script>
+    <script src="./HireMee Assessment_files/pascal.js.download"></script>
+    <script src="./HireMee Assessment_files/show-hint.js.download"></script>
+    <script src="./HireMee Assessment_files/markdown.js.download"></script>
+    <script src="./HireMee Assessment_files/anyword-hint.js.download"></script>
+
+    <script src="./HireMee Assessment_files/javascript.js.download"></script>
+    <script src="./HireMee Assessment_files/runmode.node.js.download"></script>
+    <script src="./HireMee Assessment_files/sql-hint.js.download"></script>&gt;
+    <script src="./HireMee Assessment_files/sql.js.download"></script>
+    <script src="./HireMee Assessment_files/xml.js.download"></script>
+    <script src="./HireMee Assessment_files/htmlmixed.js.download"></script>
+    <script src="./HireMee Assessment_files/css.js.download"></script>
+    <script src="./HireMee Assessment_files/comment.js.download"></script>
+    <script src="./HireMee Assessment_files/continuecomment.js.download"></script>
+    <script src="./HireMee Assessment_files/javascript-hint.js.download"></script>
+    <script src="./HireMee Assessment_files/javascript-lint.js.download"></script>
+    <script src="./HireMee Assessment_files/xml-hint.js.download"></script>
+    <script src="./HireMee Assessment_files/sql-hint.js.download"></script>
+    <script src="./HireMee Assessment_files/html-hint.js.download"></script>
+    <script src="./HireMee Assessment_files/css-hint.js.download"></script>
+    <script src="./HireMee Assessment_files/css-lint.js.download"></script>
+    <script src="./HireMee Assessment_files/html-lint.js.download"></script>
+    <script src="./HireMee Assessment_files/json-lint.js.download"></script>
+    <script src="./HireMee Assessment_files/htmlembedded.js.download"></script>
+    <script src="./HireMee Assessment_files/http.js.download"></script>
+    <script src="./HireMee Assessment_files/vbscript.js.download"></script>
+    <script src="./HireMee Assessment_files/vb.js.download"></script>
+
+    <script src="./HireMee Assessment_files/VeeTimer.js.download"></script>
+
+    <script src="./HireMee Assessment_files/main.js.download"></script>
+
+    <script src="./HireMee Assessment_files/CalcSS3.js.download"></script>
+
+    <script src="./HireMee Assessment_files/assess.js.download"></script>
+
+    <script src="./HireMee Assessment_files/VeeVideo.js.download"></script>
+
+    <script src="./HireMee Assessment_files/VeeTypingTest.js.download"></script>
+
+
+
+</body></html>

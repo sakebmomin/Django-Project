@@ -1,0 +1,134 @@
+﻿function commonErrorAlert() {
+    DetectInternetSpeed();
+}
+function DetectInternetSpeed() {
+    try {
+        var imageAddr = "/Images/Pro/hiremee-logo.png";
+        var startTime, endTime;
+        var downloadSize = 4000;
+        var download = new Image();
+        download.onload = function () {
+            endTime = (new Date()).getTime();
+            showResults();
+        }
+
+        download.onerror = function (err, msg) {
+        }
+
+        startTime = (new Date()).getTime();
+        var cacheBuster = "?nnn=" + startTime;
+        download.src = imageAddr + cacheBuster;
+
+        function showResults() {
+            try {
+                var duration = (endTime - startTime) / 1000;
+                var bitsLoaded = downloadSize * 8;
+                var speedBps = (bitsLoaded / duration).toFixed(2);
+                var speedKbps = (speedBps / 1024).toFixed(2);
+                 //var speedMbps = (speedKbps / 1024).toFixed(2);
+
+                if (speedKbps != null) {
+                    if (speedKbps < 512) {
+                        $('#divloading').hide();
+                        swal.fire({
+                            title: '<span></span>',
+                            text: "Internet bandwidth is at " + speedKbps + " kbps which is lower than the minimum internet speed requirement of 512 kbps.Please check and retry.",
+                            type: "error",
+                            showCancelButton: false,
+                            confirmButtonText: "OK",
+                            imageUrl: '/Images/Pro/error.svg',
+                            imageWidth: 80,
+                            imageHeight: 80,
+                            confirmButtonColor: '#ed5364',
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            if (result.value) {
+                                return false;
+                            }
+
+                        });
+                    }
+                    else {
+                        swal.fire({
+                            title: '<span></span>',
+                            text: ErrorMessageEnum.InternalServerError,
+                            type: "error",
+                            showCancelButton: false,
+                            confirmButtonText: "OK",
+                            imageUrl: '/Images/Pro/error.svg',
+                            imageWidth: 80,
+                            imageHeight: 80,
+                            confirmButtonColor: '#ed5364',
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            if (result.value) {
+                                return false;
+                            }
+
+                        });
+                    }
+
+                }
+                else {
+                    swal.fire({
+                        title: '<span></span>',
+                        text: ErrorMessageEnum.ServerError,
+                        type: "error",
+                        showCancelButton: false,
+                        confirmButtonText: "OK",
+                        imageUrl: '/Images/Pro/error.svg',
+                        imageWidth: 80,
+                        imageHeight: 80,
+                        confirmButtonColor: '#ed5364',
+                        allowOutsideClick: false
+                    }).then((result) => {
+                        if (result.value) {
+                            return false;
+                        }
+
+                    });
+                }
+
+            } catch (e) {
+
+            }
+        }
+    } catch (e) {
+        $('#divloading').hide();
+        throw e;
+    }
+}
+
+function commonWarningAlert(text) {
+    swal.fire({
+        text: text,
+        imageUrl: '/Images/Pro/warning.svg',
+        imageWidth: 80,
+        imageHeight: 80,
+        confirmButtonText: "Ok",
+        allowOutsideClick: false,
+    }).then((result) => {
+        if (result.value) {
+            redirectToLoginScreen();
+        }
+    });
+}
+
+function redirectToLoginScreen() {
+    try {
+        var url = window.localStorage.getItem("pageUrl");
+        var isWindowOpen = window.localStorage.getItem("IsModel");
+        if (url != null && url != "" && url != undefined) {
+            if (isWindowOpen == "true") {
+                window.close();
+            }
+
+            window.location.href = url;
+        }
+        else {
+            window.location.href = "/TestPin/StartExam";
+        }
+    } catch (e) {
+        $("#divloading").hide();
+    }
+}

@@ -1,0 +1,149 @@
+﻿const QuestionPalleteEnum = {
+    NotViewed: "0",
+    Answered: "1",
+    NotAnswered: "2",
+    MarkForReview: "3"
+};
+
+const DurationTypeEnum = {
+    ExamWise: "1",
+    SectionWise: "2"
+};
+
+//const QuestionTypeEnum = {
+//    MCQ: "1",
+//    Psychometric: "2",    
+//    SituationReaction: "3",
+//    LinkertType: "4",
+//    Code_Simulation: "5",
+//    TypingTest: "6",
+//    VideoRecord: "7",
+//    Paragraph: "8",
+//    SubjectiveType:"9"
+//};
+
+const QuestionTypeEnum = {
+    MCQ: "1",
+    Psychometric: "2",
+    SubjectiveType: "3",
+    SubjectiveTypeManualEval: "3(i)",
+    Code_Simulation: "4",
+    EssayType: "5",
+    Paragraph: "6",
+    TypingTest: "7",
+    RatingScale: "8",
+    ForcedChoice: "9",
+    AdjectivesType: "10",
+    MCQWeightages: "11"
+};
+
+const PsychometericSubQuestionTypeEnum = {
+    RatingScale: "1",
+    ForcedChoice: "2",
+    AdjectivesType: "3"
+};
+
+
+const MupltipleOptionEnum = {
+    Single: "0",
+    Multiple: "1"
+};
+
+const LinkertTypeOptionsEnum = {
+    NotAtAll: "NotAtAll",
+    Moderately: "Moderately",
+    Completely: "Completely"
+};
+
+//const PsychometricOptionsEnum = {
+//    Always: "Always",
+//    Often: "Often",
+//    Sometimes: "Sometimes"
+//};
+
+const PsychometricOptionsEnum = {
+    StronglyAgree: "StronglyAgree",
+    Agree: "Agree",
+    NotSure: "NotSure",
+    Disagree: "Disagree",
+    StrongDisagree: "StrongDisagree"
+};
+
+
+const APIStatusCodeEnum = {
+    Ok: "200",
+    DuplicateUserLoggedIn: "199",
+    InternalServerError: "500",
+    Invalid: "201",
+    ScheduleExpire: "202",
+    Terminate: "205"
+
+}
+const ErrorMessageEnum = {
+    DuplicateUserLoggedIn: "Your account is currently logged on to another device. Please logout of the other device or contact your administrator.",
+    ServerError: "Something went wrong,Please try again.",
+    InternalServerError: "Internet bandwidth seems lower than the minimum internet speed requirement of 512 kbps. Please check and retry.",
+    ScheduleExpire: "Your assessment time slot is expired.",
+    Terminate: "Your account is currently terimated. Please contact your administrator."
+
+};
+
+const QuestionMode = {
+    ResumeQuestion: "ResumeQuestion",
+    NavigateQuestion: "NavigateQuestion"
+}
+
+const ClickEvent = {
+    Previous: "Previous",
+    Next: "Next",
+    TimerElapsed: "TimerElapsed",
+    QuestionPallete: "QuestionPallete",
+    MarkForReview: "MarkForReview",
+    SectionInvoke: "SectionInvoke",
+    AutoSubmit: "AutoSubmit",
+}
+
+const InvokeMethod = {
+    Manual: "Manual",
+    Automatic: "Automatic"
+}
+
+const DynamicControlPrefixEnum = {
+    Section: "S",
+    QuestionPallete: "P",
+    Question: "Q",
+    Radio: "R",
+    CheckBox: "C",
+    Timer: "T",
+    StopTimer: "STT",
+    SpanOption: "SO",
+    SpanAnswer: "SA"
+}
+const DynamicSectionButtonClassName = {
+    Active: "nav-link active", // current section
+    InActive: "nav-link", // timer elapsed section
+    Default: "nav-link default"   // default - sections  
+}
+
+const ScoreDisplayEnum = {
+    Enabled: "1",
+    Disabled: "0"
+}
+
+const FeedBackDisplayEnum = {
+    Enabled: "1",
+    Disabled: "0"
+}
+
+const ModeEnum = {
+    WebApplication: "1",
+    MobileApplication: "2",
+    Both: "3"
+}
+
+const CustomFormEnum = {
+    Textbox: "1",
+    DatePicker: "2",
+    DropDownList: "3"
+
+};
